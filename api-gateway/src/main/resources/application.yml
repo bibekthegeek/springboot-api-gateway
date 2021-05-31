@@ -1,3 +1,16 @@
 spring:
   application:
     name: API-GATEWAY
+
+  cloud:
+    gateway:
+      routes:
+        - id: order-service
+          uri: 'http://localhost:9000'
+          predicates:
+            - Path=/orders/**
+
+        - id: payment-service
+          uri: 'http://localhost:9001'
+          predicates:
+            - Path=/payments/**
